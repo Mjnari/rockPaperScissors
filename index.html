@@ -8,8 +8,77 @@
     <body>
         <script>
             function computerPlay() {
-                
+                let cpuSelection = Math.floor(Math.random() * 3);
+                switch(cpuSelection){
+                    case 0: return "rock";;
+                        break;
+                    case 1: return "paper"
+                        break;
+                    case 2: return "scissors";
+                        break;
+                }
             }
+
+            function playRound(playerSelection, cpuSelection){
+                playerSelction = playerSelection.toLowerCase();
+
+                let draw = function(playerSelection, cpuSelection) {
+                    return `Draw, ${playerSelection} ties with ${cpuSelection}!`                    
+                };
+
+                let loss = function(playerSelction, cpuSelection){
+                    return `Loss, ${playerSelction} loses to ${cpuSelection}`
+                };
+
+                let win = function(playerSelction, cpuSelection){
+                    return `Win, ${playerSelction} beats ${cpuSelection}!`
+                };
+
+                switch(playerSelection){
+                    case "rock":
+                            switch(cpuSelection){
+                                case "rock": return draw(playerSelection, cpuSelection);
+                                    break;
+                                case "paper": return loss(playerSelection, cpuSelection);
+                                    break;
+                                case "scissors": return win(playerSelection, cpuSelection);
+                                    break;
+                            }
+                        break;
+                    case "paper":
+                            switch(cpuSelection){
+                                case "rock": return win(playerSelection, cpuSelection);
+                                    break;
+                                case "paper": return draw(playerSelection, cpuSelection);
+                                    break;
+                                case "scissors": return loss(playerSelection, cpuSelection);
+                                    break;
+                            }
+                        break;
+                    case "scissors":
+                            switch(cpuSelection){
+                                case "rock": return loss(playerSelection, cpuSelection);
+                                    break;
+                                case "paper": return win(playerSelection, cpuSelection);
+                                    break;
+                                case "scissors": return draw(playerSelection, cpuSelection);
+                                    break;
+                            }
+                        break;
+
+                }
+            }
+
+            let game = async function(){
+                let playerSelction;
+                for(i = 0; i < 5; i++){
+                     playerSelction = prompt("Enter rock, paper, or scissors", "rock");
+                     playerSelction = playerSelction.toLowerCase();
+                     alert(playRound(playerSelction, computerPlay()));
+                }
+            };
+
+            game();
 
 
         </script>
