@@ -6,7 +6,21 @@
 </head>
 
 <body>
+    <div>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+
     <script>
+
+        const buttons = document.querySelectorAll('button');
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                game(button.id);
+            });
+        });
 
         let score = 0;
         function computerPlay() {
@@ -72,15 +86,12 @@
             }
         }
 
-        let game = async function () {
-            let playerSelction;
+        let game = async function (playerSelction) {
             let playAgain = "yes";
             while (playAgain == "yes") {
-                for (i = 0; i < 5; i++) {
-                    playerSelction = prompt("Enter rock, paper, or scissors", "rock");
-                    playerSelction = playerSelction.toLowerCase();
-                    await alert(playRound(playerSelction, computerPlay()));
-                }
+                //playerSelction = prompt("Enter rock, paper, or scissors", "rock");
+                //playerSelction = playerSelction.toLowerCase();
+                await alert(playRound(playerSelction, computerPlay()));
                 await alert(`Final Score: ${score}`);
 
                 playAgain = prompt("Play again? Yes : No", "yes");
@@ -88,9 +99,6 @@
             }
             await alert("Thanks for playing!");
         };
-
-        game();
-
 
     </script>
 </body>
