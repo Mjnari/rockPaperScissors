@@ -14,6 +14,8 @@
 
     <script>
 
+        let round = 0;
+
         const buttons = document.querySelectorAll('button');
 
         buttons.forEach((button) => {
@@ -88,16 +90,17 @@
 
         let game = async function (playerSelction) {
             let playAgain = "yes";
-            while (playAgain == "yes") {
-                //playerSelction = prompt("Enter rock, paper, or scissors", "rock");
-                //playerSelction = playerSelction.toLowerCase();
-                await alert(playRound(playerSelction, computerPlay()));
-                await alert(`Final Score: ${score}`);
-
+            await alert(playRound(playerSelction, computerPlay()));
+            await alert(`Round: ${round} of 5\n   Score: ${score}`);
+            round++;
+            if (round > 5) {
                 playAgain = prompt("Play again? Yes : No", "yes");
                 playAgain = playAgain.toLowerCase();
+                round = 1;
+
+                if (playAgain == "no")
+                    await alert("Thanks for playing!");
             }
-            await alert("Thanks for playing!");
         };
 
     </script>
